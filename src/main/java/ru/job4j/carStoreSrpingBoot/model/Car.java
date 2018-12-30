@@ -5,6 +5,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Table(name="cars")
@@ -15,4 +16,7 @@ public class Car implements Serializable {
     @JsonView(Views.IdName.class)
     private Long id;
     private String name;
-}
+    @OneToMany(fetch = FetchType.EAGER)
+    @JoinColumn(name = "car_id")
+    private List<CarPic> pics;
+ }

@@ -31,11 +31,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     public PrincipalExtractor principalExtractor(UserDetailsRepo userDetailsRepo) {
         return map -> {
-            String id = (String) map.get("sub");
-            User user = userDetailsRepo.findById(id).orElseGet(() ->
+            String googleId = (String) map.get("sub");
+            User user = userDetailsRepo.findByGoogleId(googleId).orElseGet(() ->
             {
                 User newUser = new User();
-                newUser.setId(id);
+                newUser.setGoogleId(googleId);
                 newUser.setName((String)map.get("name"));
                 newUser.setEmail((String)map.get("email"));
                 newUser.setGender((String)map.get("gender"));

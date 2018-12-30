@@ -11,7 +11,9 @@ import java.time.LocalDateTime;
 @Data
 public class User implements Serializable {
     @Id
-    private String id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+    private String googleId;
     private String name;
     private String userpic;
     private String email;

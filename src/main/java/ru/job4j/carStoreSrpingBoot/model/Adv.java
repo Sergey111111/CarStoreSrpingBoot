@@ -17,20 +17,17 @@ import java.util.Set;
 @Data
 public class Adv implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @JsonView(Views.IdName.class)
     private Long id;
     @JsonView(Views.IdName.class)
     private String text;
-//    @ManyToOne
-//    @JoinTable(name = "advs_usr",
-//            joinColumns = @JoinColumn(name = "adv_id"),
-//            inverseJoinColumns = @JoinColumn(name = "user_id")
-//    )
-//    private Set<User> users;
-//    @OneToOne
-//    @JoinColumn(name="id")
-//    private Car car;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "user_id")
+    private User user;
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name="car_id")
+    private Car car;
 
     @Column(updatable = false)
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
