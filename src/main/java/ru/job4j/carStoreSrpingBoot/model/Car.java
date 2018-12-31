@@ -13,7 +13,6 @@ import java.util.List;
 public class Car implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @JsonView(Views.IdName.class)
     private Long id;
     private String name;
     @OneToMany(fetch = FetchType.EAGER)

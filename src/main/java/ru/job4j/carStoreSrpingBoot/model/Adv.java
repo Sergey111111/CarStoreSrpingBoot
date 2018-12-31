@@ -18,9 +18,7 @@ import java.util.Set;
 public class Adv implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @JsonView(Views.IdName.class)
     private Long id;
-    @JsonView(Views.IdName.class)
     private String text;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
@@ -31,6 +29,5 @@ public class Adv implements Serializable {
 
     @Column(updatable = false)
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
-    @JsonView(Views.FullAdv.class)
     LocalDateTime creationDate;
 }

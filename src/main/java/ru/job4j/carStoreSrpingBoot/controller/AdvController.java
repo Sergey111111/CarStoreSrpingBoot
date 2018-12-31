@@ -1,10 +1,9 @@
 package ru.job4j.carStoreSrpingBoot.controller;
 
-import com.fasterxml.jackson.annotation.JsonView;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import ru.job4j.carStoreSrpingBoot.model.Adv;
-import ru.job4j.carStoreSrpingBoot.model.Views;
 import ru.job4j.carStoreSrpingBoot.repo.AdvRepo;
 
 import java.time.LocalDateTime;
@@ -21,7 +20,6 @@ public class AdvController {
         this.advRepo = advRepo;
     }
     @GetMapping
-    @JsonView(Views.IdName.class)
     public List<Adv> list() {
         return advRepo.findAll();
     }
@@ -36,5 +34,16 @@ public class AdvController {
         adv.setCreationDate(LocalDateTime.now());
         return advRepo.save(adv);
     }
+    @PutMapping
+    public Adv update(@PathVariable("id") Adv advFromDb, @RequestBody Adv adv) {
+        BeanUtils.copyProperties(adv, advFromDb, "id");
+        return advRepo.save(advFromDb);
+    }
+
+    @DeleteMapping("{id}")
+    public void delete(@PathVariable("id") Adv adv) {
+        advRepo.delete(adv);
+    }
+
 
 }
