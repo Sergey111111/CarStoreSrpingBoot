@@ -1,6 +1,7 @@
 [![Build Status](https://travis-ci.org/travis-ci/travis-web.svg?branch=master)](https://travis-ci.org/travis-ci/travis-web)
 
 ##Car Store
+
 This is a test Spring Boot project.
 It's a simple Java web application
 
