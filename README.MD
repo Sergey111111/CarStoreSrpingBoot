@@ -1,13 +1,18 @@
-[![Build Status](https://travis-ci.org/travis-ci/travis-web.svg?branch=master)](https://travis-ci.org/travis-ci/travis-web)
+# carstore
 
-##Car Store
-This is a test Spring Boot project.
-It's a simple Java web application
+> A Vue.js project
 
-####Bulid Instructions ####
-* Add your own google registration codes. __${clientSecret}__ from application.properties - is a google secret is a private to allow registration via google. 
-You can easily make your own and don't forget add it as aa environment variable. 
-* Run SQL script __auxilary.sql__ to create databases for web-sessions. It's necessary because other scripts will be run by 
-Spring. All the entities will be created automatically.Pay attention that my database is Postgres so in case of using 
-other database you'll have to change dialect by yourself. 
- 
+## Build Setup
+
+``` bash
+# install dependencies
+npm install
+
+# serve with hot reload at localhost:8080
+npm run dev
+
+# build for production with minification
+npm run build
+```
+
+For detailed explanation on how things work, consult the [docs for vue-loader](http://vuejs.github.io/vue-loader).

@@ -11,7 +11,7 @@ import ru.job4j.carStoreSrpingBoot.repo.PicRepo;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
-
+@CrossOrigin
 @RestController
 @RequestMapping("pic/")
 public class CarPicController extends HttpServlet {

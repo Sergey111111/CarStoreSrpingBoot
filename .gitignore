@@ -1,26 +1,12 @@
-.gradle
-/build/
-!gradle/wrapper/gradle-wrapper.jar
+.DS_Store
+node_modules/
+dist/
+npm-debug.log
+yarn-error.log
 
-### STS ###
-.apt_generated
-.classpath
-.factorypath
-.project
-.settings
-.springBeans
-.sts4-cache
-
-### IntelliJ IDEA ###
+# Editor directories and files
 .idea
-*.iws
-*.iml
-*.ipr
-/out/
-
-### NetBeans ###
-/nbproject/private/
-/nbbuild/
-/dist/
-/nbdist/
-/.nb-gradle/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln

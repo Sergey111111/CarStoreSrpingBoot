@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.web.bind.annotation.*;
 import ru.job4j.carStoreSrpingBoot.model.Car;
 import ru.job4j.carStoreSrpingBoot.repo.CarRepo;
-
+@CrossOrigin
 @RestController
 @RequestMapping("car")
 public class CarController {

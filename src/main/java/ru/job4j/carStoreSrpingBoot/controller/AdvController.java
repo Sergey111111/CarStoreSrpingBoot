@@ -8,7 +8,7 @@ import ru.job4j.carStoreSrpingBoot.repo.AdvRepo;
 
 import java.time.LocalDateTime;
 import java.util.List;
-
+@CrossOrigin
 @RestController
 @RequestMapping("adv")
 public class AdvController {
