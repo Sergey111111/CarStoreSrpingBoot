@@ -5,7 +5,7 @@
       <div class="image_outer_container">
         <div class="image_inner_container">
           <div><img
-            src="https://lh5.googleusercontent.com/-bcLREXN4a-4/AAAAAAAAAAI/AAAAAAAAEMA/NCd2eyGJ8z0/photo.jpg"/>
+            :src="profile.userpic"/>
           </div>
         </div>
       </div>
@@ -31,7 +31,7 @@
           >Top advs</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#"
+          <a class="nav-link" href="/logout"
              @click="$emit('logOut')"
           >Log out</a>
         </li>
@@ -42,7 +42,14 @@
 </template>
 
 <script>
+export default {
+  props:['profile'],
+  data(){
+    return {
 
+    }
+  }
+}
 </script>
 
 <style scoped>

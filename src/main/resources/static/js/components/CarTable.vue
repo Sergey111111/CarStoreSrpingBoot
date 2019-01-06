@@ -6,6 +6,7 @@
       <th scope="col">User</th>
       <th scope="col">Text</th>
       <th scope="col">Car</th>
+      <th scope="col">Created</th>
     </tr>
     </thead>
     <tbody>
@@ -14,9 +15,10 @@
       @click="$emit('showCar')"
     >
       <th scope="row">{{adv.id}}</th>
-      <td>{{adv.user}}</td>
+      <td>{{adv.user.name}}</td>
       <td>{{adv.text}}</td>
-      <td>{{adv.car}}</td>
+      <td>{{adv.car.name}}</td>
+      <td>{{adv.creationDate}}</td>
     </tr>
     </tbody>
   </table>

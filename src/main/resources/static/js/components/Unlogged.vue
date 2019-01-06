@@ -3,7 +3,7 @@
     <p>Google authorization required </p>
     <ul class="nav flex-column">
       <li class="nav-item ">
-        <a class="nav-link" href="#"
+        <a class="nav-link" href="/login"
            @click="$emit('authorize')">
           Log-in
         </a>

@@ -5,20 +5,24 @@
         <div class="col-xs-5 col-md-3 col-lg-2 vcenter">
           <div>
             <user-info
-              v-if="login == 'loggedin'"
+              v-if="profile != null"
+              :profile="profile"
               @logOut="logOut"
               @add="add"
               @showAll="showAll"
             ></user-info>
-            <unlogged v-else
-                      @authorize="authorize"
-            ></unlogged>
+            <unlogged v-else>Google authorization required
+              <a href="/login">Log-in</a>
+            </unlogged>
+            <!--<unlogged v-else-->
+                      <!--@authorize="authorize"-->
+            <!--&gt;</unlogged>-->
           </div>
         </div>
 
         <div class="col-xs-5 col-md-7 col-lg-8 vcenter">
           <div>
-            <registration-form v-if="login != 'loggedin'"></registration-form>
+
             <car-table v-if="state == 'loadedTable'"
                        :advs="this.advs"
                        @showCar="showCar"
@@ -43,37 +47,40 @@
 <script>
 
   import axios from 'axios';
+
   export default {
     name: 'app',
     data() {
       return {
         user: '',
-        login: 'loggedin',
+        login: '',
         state: 'loadedTable',
         carId: '-1',
-        advs: [
-          {
-            id: '1',
-            user: 'Vasya Ivanov',
-            text: "Sell a car",
-            car: 'BMW',
-            created: 'yyyy-mm-dd hh:mm:ss'
-          },
-          {
-            id: '2',
-            user: 'Vasya Ivanov',
-            text: "Sell a car",
-            car: 'BMW',
-            created: 'yyyy-mm-dd hh:mm:ss'
-          },
-          {
-            id: '3',
-            user: 'Vasya Ivanov',
-            text: "Sell a car",
-            car: 'BMW',
-            created: 'yyyy-mm-dd hh:mm:ss'
-          }
-        ],
+        profile: frontendData.profile,
+        advs: frontendData.advs,
+        // advs: [
+        //   {
+        //     id: '1',
+        //     user: 'Vasya Ivanov',
+        //     text: "Sell a car",
+        //     car: 'BMW',
+        //     created: 'yyyy-mm-dd hh:mm:ss'
+        //   },
+        //   {
+        //     id: '2',
+        //     user: 'Vasya Ivanov',
+        //     text: "Sell a car",
+        //     car: 'BMW',
+        //     created: 'yyyy-mm-dd hh:mm:ss'
+        //   },
+        //   {
+        //     id: '3',
+        //     user: 'Vasya Ivanov',
+        //     text: "Sell a car",
+        //     car: 'BMW',
+        //     created: 'yyyy-mm-dd hh:mm:ss'
+        //   }
+        // ],
         car: {
           id: '12',
           car: 'BMW',
@@ -89,9 +96,9 @@
 
     methods: {
       authorize() {
-        axios.get('http://localhost:9000/login').then(result =>{
-          console.log(result);
-        });
+         // axios.get('http://localhost:9000/login').then(result => {
+         //   this.registrationForm = result.data
+         // });
         if (this.user == '') {
           this.login = 'loggedin';
           this.state = 'loadedTable';
@@ -101,13 +108,13 @@
         }
       },
       logOut() {
-        this.login = '';
+        this.profile = '';
         this.state = 'void';
         console.log('logged out');
       },
       showAll() {
-        axios.get('http://localhost:9000/adv').then(result =>{
-          console.log(result);
+        axios.get('http://localhost:9000/adv').then(result => {
+          ;
         });
         this.state = 'loadedTable';
         console.log('showing cars...');
@@ -121,7 +128,8 @@
       add() {
         this.state = 'addCar';
         console.log('add an adv...');
-      }
+      },
+
     }
   }
 </script>

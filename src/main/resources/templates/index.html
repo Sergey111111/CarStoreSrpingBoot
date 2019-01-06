@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -6,9 +7,18 @@
         integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
         crossorigin="anonymous">
   <title>carstore</title>
+  <script th:inline="javascript">
+    var frontendData = [[${frontendData}]];
+    console.log(frontendData);
+  </script>
 </head>
 <body>
-<div id="app"></div>
+
+
+<div id="app">
+
+
+</div>
 <script src="http://localhost:8000/dist/build.js"></script>
 </body>
 </html>

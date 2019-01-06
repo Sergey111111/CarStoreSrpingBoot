@@ -5,44 +5,44 @@
 
         <div>
           <label for="carname">Enter car name:</label>
-          <input v-model="name" type="text" class="form-control is-valid" id="carname" placeholder="Car" required>
-          <div v-if="validation=='valid'" class="valid-feedback">
-            Looks good!
-          </div>
+          <input v-model="name" type="text" :class="'form-control '+ valid" id="carname" placeholder="Car" required>
+          <!--<div v-if="valid == 'is-valid'" class="valid-feedback">-->
+          <!--Looks good!-->
+          <!--</div>-->
         </div>
 
-        <div>
-          <label for="carbody">Enter car body type:</label>
-          <input v-model="type" type="text" class="form-control is-valid" id="carbody" placeholder="Body" required>
-          <div v-if="validation=='valid'" class="valid-feedback">
-            Looks good!
-          </div>
-        </div>
+        <!--<div>-->
+        <!--<label for="carbody">Enter car body type:</label>-->
+        <!--<input v-model="type" type="text" class="form-control" id="carbody" placeholder="Body" required>-->
+        <!--&lt;!&ndash;<div v-if="isValid(name)=='valid'" class="valid-feedback">&ndash;&gt;-->
+        <!--&lt;!&ndash;Looks good!&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--</div>-->
 
-        <div>
-          <label for="color">Enter car color:</label>
-          <input v-model="color" type="text" class="form-control " id="color" placeholder="Color" required>
-          <div v-if="validation=='valid'" class="valid-feedback">
-            Looks good!
-          </div>
-        </div>
+        <!--<div>-->
+        <!--<label for="color">Enter car color:</label>-->
+        <!--<input v-model="color" type="text" class="form-control " id="color" placeholder="Color" required>-->
+        <!--&lt;!&ndash;<div v-if="isValid(name)=='valid'" class="valid-feedback">&ndash;&gt;-->
+        <!--&lt;!&ndash;Looks good!&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--</div>-->
 
-        <div>
-          <label for="price">Enter car price:</label>
-          <input v-model="color" type="number" class="form-control is-valid" id="price" placeholder="Price" required>
-          <div v-if="validation=='valid'" class="valid-feedback">
-            Looks good!
-          </div>
-        </div>
+        <!--<div>-->
+        <!--<label for="price">Enter car price:</label>-->
+        <!--<input v-model="color" type="number" class="form-control" id="price" placeholder="Price" required>-->
+        <!--&lt;!&ndash;<div v-if="isValid(name)=='valid'" class="valid-feedback">&ndash;&gt;-->
+        <!--&lt;!&ndash;Looks good!&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--</div>-->
 
-        <div>
-          <label for="text">Write the description:</label>
-          <textarea v-model="text" class="form-control is-valid" id="text" placeholder="Description"
-                    required></textarea>
-          <div v-if="validation=='valid'" class="valid-feedback">
-            Looks good!
-          </div>
-        </div>
+        <!--<div>-->
+        <!--<label for="text">Write the description:</label>-->
+        <!--<textarea v-model="text" class="form-control" id="text" placeholder="Description"-->
+        <!--required></textarea>-->
+        <!--&lt;!&ndash;<div v-if="isValid(name)=='valid'" class="valid-feedback">&ndash;&gt;-->
+        <!--&lt;!&ndash;Looks good!&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--</div>-->
 
         <div class="custom-file">
           <label class="custom-file-label" for="validatedCustomFile">Choose file...</label>
@@ -75,11 +75,12 @@
 <script>
 
   import axios from 'axios';
+
   export default {
     props: ['user'],
     data() {
       return {
-        validation: 'invalid',
+        valid: '',//if it's 'is-valid' then there will be a green tick in the corner
         name: '',
         type: '',
         color: '',
@@ -94,12 +95,30 @@
         console.log(event);
       },
       onUpload() {
-        const fd =new FormData();
-        fd.append('image',this.selectedFile, this.selectedFile.name);
-        axios.get('/addcar',fd).then(result =>{
+        const fd = new FormData();
+        var car ={
+          name:name
+        }
+        fd.append('image', this.selectedFile, this.selectedFile.name);
+        axios.post('http://localhost:9000/adv', fd, car).then(result => {
           console.log(result);
         });
       }
+    },
+    isValidName() {
+      if (name != null) {
+        this.isValid = 'is-valid'
+        return 'is-valid';
+      }
+    },
+    createCar() {
+      car:{
+        name:'this.name'
+      }
+
+      axios.post('http://localhost:9000/car').then(result => {
+        console.log(result);
+      })
     }
   }
 </script>

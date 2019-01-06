@@ -7,7 +7,6 @@ import UserInfo from './components/UserInfo.vue';
 import AddCar from './components/AddCar.vue';
 import Unlogged from './components/Unlogged.vue';
 import CarInfo from './components/CarInfo.vue';
-import RegistrationForm from './components/RegistraionForm.vue';
 
 Vue.use(VueCarousel);
 Vue.component('CarTable',CarTable);
@@ -15,7 +14,6 @@ Vue.component('UserInfo',UserInfo);
 Vue.component('AddCar',AddCar);
 Vue.component('Unlogged',Unlogged);
 Vue.component('CarInfo',CarInfo);
-Vue.component('RegistrationForm', RegistrationForm);
 
 new Vue({
   el: '#app',

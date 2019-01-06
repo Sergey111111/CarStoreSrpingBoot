@@ -2,16 +2,16 @@
 
   <div class="car-info">
     <div>
-      <p> Advertisement #{{adv.id}} created by {{adv.user}}</p>
+      <p> Advertisement #{{adv.id}} created by {{adv.user.name}}</p>
       <article>{{adv.text}}</article>
       <i>{{adv.created}}</i>
     </div>
     <div>
-      {{car.id}}
-      {{car.body}}
-      {{car.color}}
-      {{car.price}}
-      {{car.sold}}
+      <p>Parameters:</p>
+      <p>Car body type {{car.body}}</p>
+      <p>Car color {{car.color}}</p>
+      <p>Price {{car.price}}</p>
+      <p :class='carSoldColorer()'>This car is {{isSold()}}</p>
     </div>
     <carousel :per-page="1"
               :mouse-drag="false" paginationPosition="top"
@@ -37,7 +37,26 @@
 
 <script>
   export default {
-    props: ['car','adv']
+    props: ['car', 'adv'],
+    data() {
+      return {}
+    },
+    methods:{
+      isSold() {
+        if (this.car.sold == true) {
+          return sold;
+        } else {
+          return 'able to buy';
+        }
+  },
+      carSoldColorer() {
+        if(this.car.sold == true) {
+          return 'text-danger'
+        } else {
+          return 'text-primary'
+        }
+      }
+    }
 
 
   }
