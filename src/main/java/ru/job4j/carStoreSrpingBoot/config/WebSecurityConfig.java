@@ -16,6 +16,9 @@ import java.time.LocalDateTime;
 @Configuration
 @EnableWebSecurity
 @EnableOAuth2Sso
+/**
+ * This is web security config with google authorization
+ */
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -28,7 +31,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .csrf().disable();
     }
-    @Bean
+
+  /**
+   * This bean check  user from db and creates new if there's no one
+   * @param userDetailsRepo
+   * @return
+   */
+  @Bean
     public PrincipalExtractor principalExtractor(UserDetailsRepo userDetailsRepo) {
         return map -> {
             String googleId = (String) map.get("sub");

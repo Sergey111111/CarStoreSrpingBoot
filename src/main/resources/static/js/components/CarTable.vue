@@ -11,14 +11,14 @@
     </thead>
     <tbody>
     <tr
-      v-for="adv in this.advs"
-      @click="$emit('showCar')"
+      v-for="car in this.cars"
+      @click="$emit('showCar',car.id)"
     >
-      <th scope="row">{{adv.id}}</th>
-      <td>{{adv.user.name}}</td>
-      <td>{{adv.text}}</td>
-      <td>{{adv.car.name}}</td>
-      <td>{{adv.creationDate}}</td>
+      <th scope="row">{{car.id}}</th>
+      <td>{{car.user.name}}</td>
+      <td>{{car.text}}</td>
+      <td>{{car.name}}</td>
+      <td>{{car.creationDate}}</td>
     </tr>
     </tbody>
   </table>
@@ -26,7 +26,7 @@
 
 <script>
 export default {
-  props:['advs']
+  props:['cars']
 }
 </script>
 

@@ -7,25 +7,29 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import ru.job4j.carStoreSrpingBoot.model.User;
-import ru.job4j.carStoreSrpingBoot.repo.AdvRepo;
-
+import ru.job4j.carStoreSrpingBoot.repo.CarRepo;
 import java.util.HashMap;
+
+
+/**
+ * This main and blank controller  gets user and send to the front-end side initial data
+ */
 @CrossOrigin
 @Controller
 @RequestMapping("/")
 public class MainController {
 
-    private final AdvRepo advRepo;
+    private final CarRepo carRepo;
 
-    public MainController(AdvRepo advRepo) {
-        this.advRepo = advRepo;
+    public MainController(CarRepo carRepo) {
+        this.carRepo = carRepo;
     }
 
     @GetMapping
     public String main(Model model, @AuthenticationPrincipal User user) {
         HashMap<Object, Object> data = new HashMap<>();
         data.put("profile",user);
-        data.put("advs", advRepo.findAll());
+        data.put("cars", carRepo.findAll());
         model.addAttribute("frontendData", data);
         return "index";
     }

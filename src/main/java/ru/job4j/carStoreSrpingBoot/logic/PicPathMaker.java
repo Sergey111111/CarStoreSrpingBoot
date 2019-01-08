@@ -1,14 +1,8 @@
 package ru.job4j.carStoreSrpingBoot.logic;
 
-import lombok.extern.slf4j.Slf4j;
-import org.apache.tomcat.util.http.fileupload.FileItem;
-import org.apache.tomcat.util.http.fileupload.disk.DiskFileItemFactory;
-import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
-import ru.job4j.carStoreSrpingBoot.model.Car;
 import ru.job4j.carStoreSrpingBoot.model.CarPic;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 

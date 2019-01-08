@@ -1,10 +1,15 @@
 <template>
 
+
   <div class="car-info">
+    <picture-loader
+    :car="this.car"
+    >
+    </picture-loader>
     <div>
-      <p> Advertisement #{{adv.id}} created by {{adv.user.name}}</p>
-      <article>{{adv.text}}</article>
-      <i>{{adv.created}}</i>
+      <p> Advertisement #{{car.id}} created by {{carCreator.name}}</p>
+      <article>{{car.text}}</article>
+      <i>{{car.created}}</i>
     </div>
     <div>
       <p>Parameters:</p>
@@ -37,25 +42,27 @@
 
 <script>
   export default {
-    props: ['car', 'adv'],
+    props: ['car','carCreator'],
     data() {
-      return {}
+      return {
+      }
     },
-    methods:{
+    methods: {
       isSold() {
         if (this.car.sold == true) {
-          return sold;
+          return 'sold';
         } else {
           return 'able to buy';
         }
-  },
+      },
       carSoldColorer() {
-        if(this.car.sold == true) {
+        if (this.car.sold == true) {
           return 'text-danger'
         } else {
           return 'text-primary'
         }
-      }
+      },
+
     }
 
 

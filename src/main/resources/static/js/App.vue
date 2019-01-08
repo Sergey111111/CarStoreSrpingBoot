@@ -15,7 +15,7 @@
               <a href="/login">Log-in</a>
             </unlogged>
             <!--<unlogged v-else-->
-                      <!--@authorize="authorize"-->
+            <!--@authorize="authorize"-->
             <!--&gt;</unlogged>-->
           </div>
         </div>
@@ -24,17 +24,17 @@
           <div>
 
             <car-table v-if="state == 'loadedTable'"
-                       :advs="this.advs"
+                       :cars="this.cars"
                        @showCar="showCar"
             ></car-table>
             <car-info
               v-else-if="state == 'showCar'"
               :car="this.car"
-              :adv="this.advs[1]"
+              :carCreator="this.carCreator"
             ></car-info>
             <add-car
               v-else-if="state =='addCar'"
-
+              :user="this.profile"
             ></add-car>
             <div v-else-if="state =='void'"></div>
           </div>
@@ -57,48 +57,19 @@
         state: 'loadedTable',
         carId: '-1',
         profile: frontendData.profile,
-        advs: frontendData.advs,
-        // advs: [
-        //   {
-        //     id: '1',
-        //     user: 'Vasya Ivanov',
-        //     text: "Sell a car",
-        //     car: 'BMW',
-        //     created: 'yyyy-mm-dd hh:mm:ss'
-        //   },
-        //   {
-        //     id: '2',
-        //     user: 'Vasya Ivanov',
-        //     text: "Sell a car",
-        //     car: 'BMW',
-        //     created: 'yyyy-mm-dd hh:mm:ss'
-        //   },
-        //   {
-        //     id: '3',
-        //     user: 'Vasya Ivanov',
-        //     text: "Sell a car",
-        //     car: 'BMW',
-        //     created: 'yyyy-mm-dd hh:mm:ss'
-        //   }
-        // ],
+        cars: frontendData.cars,
         car: {
-          id: '12',
-          car: 'BMW',
-          body: 'sedan',
-          engine: 'gas',
-          color: 'red',
-          price: '10000',
-          sold: 'true'
-        }
+        },
+        carCreator:{}
 
       }
     },
 
     methods: {
       authorize() {
-         // axios.get('http://localhost:9000/login').then(result => {
-         //   this.registrationForm = result.data
-         // });
+        // axios.get('http://localhost:9000/login').then(result => {
+        //   this.registrationForm = result.data
+        // });
         if (this.user == '') {
           this.login = 'loggedin';
           this.state = 'loadedTable';
@@ -113,21 +84,26 @@
         console.log('logged out');
       },
       showAll() {
-        axios.get('http://localhost:9000/adv').then(result => {
+        axios.get('http://localhost:9000/car').then(result => {
           ;
         });
         this.state = 'loadedTable';
         console.log('showing cars...');
       },
 
-      showCar() {
-        // this.carId =id;
+      showCar(id) {
+        axios.get('http://localhost:9000/car/'+ id).then(result => {
+          console.log(result.data)
+          this.car = result.data;
+          this.carCreator = this.car.user;
+        });
+        this.carId = id;
         this.state = 'showCar';
         console.log('showing car...');
       },
       add() {
         this.state = 'addCar';
-        console.log('add an adv...');
+        console.log('add an car...');
       },
 
     }

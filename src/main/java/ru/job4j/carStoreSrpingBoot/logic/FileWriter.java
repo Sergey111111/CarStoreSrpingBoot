@@ -30,8 +30,4 @@ public class FileWriter {
         return carPics;
     }
 
-    public void getInputData(HttpServletRequest req, String carId) {
-    }
-
-
 }
