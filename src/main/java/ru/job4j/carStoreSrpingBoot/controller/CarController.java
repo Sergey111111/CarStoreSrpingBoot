@@ -3,6 +3,7 @@ package ru.job4j.carStoreSrpingBoot.controller;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import ru.job4j.carStoreSrpingBoot.cache.CarCache;
 import ru.job4j.carStoreSrpingBoot.model.Car;
 import ru.job4j.carStoreSrpingBoot.repo.CarRepo;
 import ru.job4j.carStoreSrpingBoot.repo.UserDetailsRepo;
@@ -19,17 +20,23 @@ import java.util.List;
 public class CarController {
 
   private final CarRepo carRepo;
+
   private final UserDetailsRepo userRepo;
 
+  private final CarCache carCache;
+
   @Autowired
-  public CarController(CarRepo carRepo, UserDetailsRepo userRepo) {
+  public CarController(CarRepo carRepo,
+                       UserDetailsRepo userRepo,
+                       CarCache carCache) {
     this.carRepo = carRepo;
     this.userRepo = userRepo;
+    this.carCache = carCache;
   }
 
   @GetMapping
   public List<Car> list() {
-    return carRepo.findAll();
+    return carCache.findAll();
   }
 
   @GetMapping("{id}")
